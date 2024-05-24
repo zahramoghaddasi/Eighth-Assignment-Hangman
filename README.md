@@ -105,23 +105,7 @@ If the guesser makes six incorrect guesses, the hangman figure is fully drawn, a
   =====
 ```
 
-### Visual Representation
-
-1. **Initial Setup**:
-
-   <img src="./Initial-Setup.png" alt="Image" width="200" height="150">
-
-2. **Correct Guess**:
-
-   <img src="./Correct-Guess.png" alt="Image" width="200" height="150">
-
-3. **Incorrect Guess**:
-
-   <img src="./Incorrect-Guess.png" alt="Image" width="200" height="150">
-
-4. **Complete Hangman**:
-
-   <img src="./Complete-Hangman.png" alt="Image" width="200" height="150">
+For more information, we recommend playing online hangman, available in the [resource section](#Resources-).
 
 
 
