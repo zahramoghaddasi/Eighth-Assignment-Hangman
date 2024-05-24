@@ -165,6 +165,8 @@ This project will utilize 2 Tables:
 
     `Total Score` : It should be the product of Count and Win.
 
+**Important: both of your tables should have a primary key**
+
 ## UI + Front Features 🎨
  * Design Login, Signup and Delete Account page.
  * In main page you should add 3 button ::
