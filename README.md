@@ -1,4 +1,4 @@
-# Eighth Assignment Hangئan 🪢
+# Eighth Assignment Hangman 🪢
 ## Introduction 👋
 Welcome to your last assignment before the Final project. 🤠🤠  
 I hope you all are still energetic and ready to continue your excellent work. In this project, you will build a Hangman game using JavaFX and store its data in a chosen database. 💻
