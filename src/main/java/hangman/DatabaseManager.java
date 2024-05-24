@@ -1,4 +1,4 @@
-package hang_man.hangman;
+package hangman;
 
 import java.sql.*;
 public class DatabaseManager {

@@ -1,4 +1,4 @@
-package hang_man.hangman;
+package hangman;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;

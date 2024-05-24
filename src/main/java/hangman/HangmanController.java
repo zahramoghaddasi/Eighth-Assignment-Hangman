@@ -1,4 +1,4 @@
-package hang_man.hangman;
+package hangman;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
