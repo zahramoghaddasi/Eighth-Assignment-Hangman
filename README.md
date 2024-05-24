@@ -185,6 +185,7 @@ Your submission will be evaluated based on the following criteria:
 - Add different difficulty levels to your game, with longer words or a smaller number of guesses.
 - Display a timer on the screen as the user is playing the game. The timer should stop once the game is finished.
 - Implement a competitive mode with two players playing simultaneously.
+- Enhance your leaderboard by adding filters that allow users to search the data by username, duration, number of wins, and number of incorrect guesses.
 
 ## Submission ⌛
 The deadline for submitting your code is **Friday, June 7 (18th of Khordad)**. Good luck!
