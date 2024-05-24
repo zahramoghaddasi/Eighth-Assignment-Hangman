@@ -3,7 +3,8 @@ module hangman {
     requires javafx.fxml;
 
     requires com.dlsc.formsfx;
+    requires java.sql;
 
-    opens hang_man.hangman to javafx.fxml;
+    opens hangman to javafx.fxml;
     exports hangman;
 }
