@@ -181,7 +181,7 @@ Your submission will be evaluated based on the following criteria:
 - Implement a competitive mode with two players playing simultaneously.
 
 ## Submission ⌛
-The deadline for submitting your code is ....
+The deadline for submitting your code is Friday, June 7 (18th of Khordad).
 
 ## Resources 📚
 🔗 [Online Hangman game](https://www.gamestolearnenglish.com/hangman/)
