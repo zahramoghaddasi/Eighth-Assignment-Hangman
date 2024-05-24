@@ -1,4 +1,4 @@
-# Eighth Assignment Hang Man 🪢
+# Eighth Assignment Hangئan 🪢
 ## Introduction 👋
 Welcome to your last assignment before the Final project. 🤠🤠  
 I hope you all are still energetic and ready to continue your excellent work. In this project, you will build a Hangman game using JavaFX and store its data in a chosen database. 💻
@@ -7,11 +7,10 @@ I hope you all are still energetic and ready to continue your excellent work. In
 1) Make sure you have installed these apps before starting your project:
 
 - SceneBuilder
-- Mongodb/ PostgreSQL
+- Mongodb/PostgreSQL
 - Java 21
 - Git
 - Maven as a package manager 
-
 
 ## Objectives ✏️
 
@@ -23,20 +22,20 @@ By completing this assignment, you will:
 
 ## Assignment Overview 🔎
 
-Your task is to develop a Hangman game. Hangman is a game where the player must guess the word by suggesting letters within a limited number of guesses. Incorrect guesses result in a part of a stick figure being drawn, and the game is lost if the figure is completed before the word is guessed.
+Your task is to develop a Hangman game. Hangman is a game where the player must guess the word by suggesting letters within a limited number of guesses. Incorrect guesses result in a part of a stick figure being drawn, and the game is lost if the figure is completed before the word is guessed. Note that you must design a Graphical User Interface for this project using JavaFX.
 
 ## How to Play Hangman
 
 1. **Setup**:
-   - One player (the host) thinks of a word and draws a series of blank spaces representing each letter of the word. For example, if the word is "APPLE", it would be shown as:
+   - The host (the computer, in this case) chooses a word and draws a series of blank spaces representing each letter of the word. For example, if the word is "APPLE", 5 blank spaces must be shown to the player.
      ```
      _ _ _ _ _
      ```
 
 2. **Gameplay**:
-   - The other player (the guesser) suggests letters one at a time.
-   - If the guessed letter is in the word, the host fills in the corresponding blanks with that letter, and the letter will be vanished from the keyboard.
-   - If the guessed letter is not in the word, the host draws one part of a hangman figure. The typical order of drawing is:
+   - The player (the guesser) suggests letters one at a time.
+   - If the guessed letter is in the word, the host fills in the corresponding blanks with that letter, and the letter will vanish from the keyboard.
+   - If the guessed letter is not in the word, the host draws one part of a hangman figure. You can draw this figure however you like in your GUI, but the typical order of drawing is:
      1. Head
      2. Body
      3. Left arm
@@ -48,7 +47,7 @@ Your task is to develop a Hangman game. Hangman is a game where the player must 
    - The guesser wins the game if they correctly guess all the letters in the word before the hangman figure is fully drawn.
    - The guesser loses the game if the hangman figure is completed before the word is guessed.
 
-### Example with Steps
+### Example of a game
 
 #### Step 1: Initial Setup
 - The host thinks of the word "JAVA" and draws the blanks:
@@ -63,7 +62,7 @@ Your task is to develop a Hangman game. Hangman is a game where the player must 
   _ A _ A
   ```
   No part of the hangman is drawn since the guess was correct.
-  Letter A will be vanished from the keyboard.
+  Letter A will vanish from the keyboard.
 
 #### Step 3: Second Guess
 - The guesser suggests the letter "E".
@@ -94,7 +93,7 @@ Your task is to develop a Hangman game. Hangman is a game where the player must 
   The word is fully guessed, and the guesser wins!
 
 #### Final Drawing if the Guesser Loses:
-If the guesser makes six incorrect guesses, the hangman figure is fully drawn, and the word is not guessed:
+If the guesser makes enough incorrect guesses, the hangman figure is fully drawn, and the word is not guessed:
 ```
    ____
   |    |
@@ -115,51 +114,60 @@ For more information, we recommend playing online hangman, available in the [res
 1. Fork this repository and clone it to your local machine.
 2. Create a new branch named `develop` and switch to it. All development should be done in this branch.
 3. Implement your Hangman game code. The following sections detail what needs to be done.
-4. Create a video demonstrating your code explaining its functionality. You can both submit this video to your TAs or push it in your repository. Your video should be about 1 or 2 minuets.
+4. Record a video showcasing your project while explaining its functionality. You can either submit this video to your mentor or push it to your repository. Your video should be between 1 to 2 minutes long.
 
 
 
 
-## DataBase Features ⛁
-You can implement your database with either sql or Mongodb. There is no preferences.
+## Database Features ⛁
+You can implement your database with either SQL or MongoDB. There are no preferences.
 This project will utilize 2 Tables:
-1) Implement a Table for `UserInfo`
+
+1) Implement a Table titled: `UserInfo`
    When a user wants to start the game,
    they must add their information. 
    After signing up their information should be saved in the database.
+   
     <pre>
     --Name--|--Username--|--Password--
             |            |
                  </pre>
-    ```NOTE``` :: Make sure each username is different from others.
-
-   1) You should create a table for the `Global Score` ,
-   which all users can see in their Global Score.
-   <pre>
-   --Username--|--Count--|--Win--|--Total Score--
-               |         |       |
+    ```NOTE``` : Make sure each username is different from others.
    </pre>
-   ```Note```: The table should be sorted from higher total score to lower score.
+   
+2) You should create a table titled: `GameInfo`,
+Store the details of **each** played game in this table.
 
-    `Username`: It should store all usernames.
+   <pre>
+   --GameID--|--Username--|--Word--|--WrongGuesses--|--Time--|--Win--
+             |            |        |                |        |
+   </pre>
 
-    `Count`: It should count the number of times the user has played this game.
+    `GameID`: A unique ID identifying the game.
+   
+    `Username`: The username of the player.
+   
+    `Word`: The word that was chosen for that specific game.
 
-    `Win`:  It should count all the sections where the user won the game.
+    `WrongGuesses`: Count the number of wrong letters guessed during the game.
 
-    `Total Score` : It should be the product of Count and Win.
+    `Time`:  The amount of time (in seconds) spent in one game.
 
-**Important: both of your tables should have a primary key**
+    `Win`:  A boolean to store whether or not the game was won.
+
+**Important: Ensure to specify the primary key when creating your Database. You are allowed to add additional columns and tables if necessary.**
 
 ## UI + Front Features 🎨
- * Design Login, Signup and Delete Account page.
- * In main page you should add 3 button ::
+ * Design Login, Signup, and main menu pages.
+ * After logging in as a player, you should be able to access 3 buttons on the main page:
    1) Start the game.
-   2) Viewing the user's score.
-   3) Viewing the Global score.
- - For each wrong answer, display the next part of the stick figure.
+   2) View the player's previous game details. Use the data stored in the `GameInfo` table to display a summary of every game played by the current user.
+   3) View the leaderboard. Display every player's name alongside their total number of wins. The leaderboard should be sorted from the highest number of wins to the lowest.
 
- - Data (words) should be randomly generated by using [Animals API](https://api-ninjas.com/api/animals). First you can test your code with a fix word and then from the list API gives you, generate random words for your game. 
+While playing the game, note that:
+ - For each wrong letter, you must display the next part of the stick figure. Store the total number of wrong guesses in the database.
+ - You must measure the amount of time the player has spent on each game and store it in the database.
+ - Data (words) should be randomly generated by using [Animals API](https://api-ninjas.com/api/animals). First, you can test your code with a fixed word and then from the list API gives you, generate random words for your game. 
 
 
 ## Evaluation 📃
@@ -174,14 +182,12 @@ Your submission will be evaluated based on the following criteria:
 **Note: Usage of ChatGPT or any other AI generative model to complete any part of this assignment is strictly prohibited. Violation will result in a score of 0 without warnings.**
 
 ## Bonus Objectives ✒️
-- Add different difficulty levels to your game.
-- Add other categories (e.g., cities, food) to your game.
-- Enhance the UI design.
-- Add a timer.
+- Add different difficulty levels to your game, with longer words or a smaller number of guesses.
+- Display a timer on the screen as the user is playing the game. The timer should stop once the game is finished.
 - Implement a competitive mode with two players playing simultaneously.
 
 ## Submission ⌛
-The deadline for submitting your code is Friday, June 7 (18th of Khordad).
+The deadline for submitting your code is **Friday, June 7 (18th of Khordad)**. Good luck!
 
 ## Resources 📚
 🔗 [Online Hangman game](https://www.gamestolearnenglish.com/hangman/)
