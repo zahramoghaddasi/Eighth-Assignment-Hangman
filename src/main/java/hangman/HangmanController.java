@@ -47,7 +47,6 @@ public class HangmanController implements Initializable {
                     |
                     |
                     |
-                    |
          =====""",
             """
             +---+
@@ -55,14 +54,12 @@ public class HangmanController implements Initializable {
            O      |
                     |
                     |
-                    |
          =====""",
             """
             +---+
             |       |
            O      |
             |       |
-                    |
                     |
          =====""",
             """
@@ -71,14 +68,12 @@ public class HangmanController implements Initializable {
            O      |
           /|       |
                     |
-                    |
          =====""",
             """
             +---+
             |       |
            O      |
           /|\\      |
-                    |
                     |
          =====""",
             """
@@ -87,7 +82,6 @@ public class HangmanController implements Initializable {
            O      |
           /|\\      |
           /         |
-                    |
          =====""",
             """
             +---+
@@ -95,7 +89,6 @@ public class HangmanController implements Initializable {
            O      |
           /|\\      |
           / \\      |
-                    |
          ====="""
     ));
 
