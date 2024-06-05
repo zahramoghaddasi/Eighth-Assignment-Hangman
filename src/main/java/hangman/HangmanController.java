@@ -1,5 +1,7 @@
 package hangman;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -8,6 +10,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.io.BufferedReader;
+import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
@@ -97,7 +100,8 @@ public class HangmanController implements Initializable {
         if (!gameEnded) {
             Button button = (Button) event.getSource();
             String letter = button.getText();
-            button.setDisable(true);
+           // button.setDisable(true);
+            button.setOpacity(0.5);
             playTurn(letter);
         }
     }
@@ -168,6 +172,7 @@ public class HangmanController implements Initializable {
             Button button = (Button) hangmanTextArea.getScene().lookup("#" + letter);
             if (button != null) {
                 button.setDisable(false);
+                button.setOpacity(1.0);
             }
         }
 
@@ -175,39 +180,19 @@ public class HangmanController implements Initializable {
 
     @FXML
     void setWord(ActionEvent event) {
-        // Send HTTP GET request to fetch list of words from the website
         try {
-            URL url = new URL("https://api-ninjas.com/api/animals");
+            URL url = new URL("https://api.api-ninjas.com/v1/animals?name=cheetah");
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
-            connection.setRequestMethod("GET");
             connection.setRequestProperty("X-Api-Key", "HwA0+AKJLZhGKrsw3JwnxQ==WHcRZYxbqRdQq8qa");
-
-            BufferedReader in = new BufferedReader(new InputStreamReader(connection.getInputStream()));
-            StringBuilder response = new StringBuilder();
-            String inputLine;
-            while ((inputLine = in.readLine()) != null) {
-                response.append(inputLine);
-            }
-            in.close();
-
-            // Parse the JSON response to get the list of words
-            JSONArray wordsArray = new JSONArray(response.toString());
-
-            // Select a random word from the list
-            int randomIndex = (int) (Math.random() * wordsArray.length());
-            word = wordsArray.getString(randomIndex).toUpperCase();
-
-            // Set up the word for the game
-            setupWord(word);
-            wordInput.clear();
-            wordInput.setDisable(true);
-
-            connection.disconnect();
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode root = mapper.readTree(connection.getInputStream());
+            System.out.println(root);
+            System.out.println(root.path("fact").asText());
         } catch (Exception e) {
             e.printStackTrace();
-            endOfGameText.setText("Failed to fetch word from the website.");
         }
     }
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
