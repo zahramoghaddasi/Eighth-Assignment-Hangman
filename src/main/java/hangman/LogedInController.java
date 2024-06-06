@@ -28,11 +28,15 @@ public class LogedInController {
     @FXML
     private Button buttonsignup;
     private DatabaseManager databaseManager;
+    //private String userName = tf_username.getText();
 
     public LogedInController() throws SQLException {
         databaseManager = new DatabaseManager();
     }
 
+//    public String getUserName(){
+//        return userName;
+//    }
     @FXML
     void moveTosignup(ActionEvent event) throws IOException {
         Stage stage = new Stage();
@@ -54,13 +58,7 @@ public class LogedInController {
         }
 
         if (databaseManager.isUserExist(username, password)) {
-            System.out.println("Login successful");
-            Stage stage = new Stage();
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Menu.fxml"));
-            Parent parent = fxmlLoader.load();
-            stage.setTitle("Menu");
-            stage.setScene(new Scene(parent,700,700));
-            stage.show();
+            loadGame(username);
         } else {
             showAlert("Error", "Login failed", "Username does not exist or password is incorrect.");
         }
@@ -71,6 +69,17 @@ public class LogedInController {
         alert.setHeaderText(headerText);
         alert.setContentText(contentText);
         alert.showAndWait();
+    }
+
+    private void loadGame(String username) throws IOException {
+        System.out.println("Login successful");
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Menu.fxml"));
+        Parent parent = fxmlLoader.load();
+
+        stage.setTitle("Menu");
+        stage.setScene(new Scene(parent,700,700));
+        stage.show();
     }
 
 }

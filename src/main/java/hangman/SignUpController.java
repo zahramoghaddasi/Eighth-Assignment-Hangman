@@ -68,14 +68,10 @@ public class SignUpController {
             showAlert("Error", "Signup failed", "Username already taken.");
         } else {
             databaseManager.signupUser(username, password, name,userId);
+            loadGame(username);
             System.out.println("Signup successful");
 
-            Stage stage = new Stage();
-            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Menu.fxml"));
-            Parent parent = fxmlLoader.load();
-            stage.setTitle("Menu");
-            stage.setScene(new Scene(parent,700,700));
-            stage.show();
+
         }
     }
     private void showAlert(String title, String headerText, String contentText) {
@@ -84,6 +80,17 @@ public class SignUpController {
         alert.setHeaderText(headerText);
         alert.setContentText(contentText);
         alert.showAndWait();
+    }
+
+    private void loadGame(String username) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Menu.fxml"));
+        Parent parent = fxmlLoader.load();
+//        HangmanController controller = fxmlLoader.getController();
+//        controller.setUsername(username);
+        stage.setTitle("Menu");
+        stage.setScene(new Scene(parent,700,700));
+        stage.show();
     }
 
 }

@@ -20,6 +20,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Random;
@@ -108,6 +109,17 @@ public class HangmanController implements Initializable {
          ====="""
     ));
 
+    private DatabaseManager databaseManager;
+    private String username;
+
+    public HangmanController() throws SQLException {
+        databaseManager = new DatabaseManager();
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
     @FXML
     void handleLetter(ActionEvent event) {
         if (!gameEnded) {
@@ -142,6 +154,7 @@ public class HangmanController implements Initializable {
                 gameEnded = true;
                 disableAllButtons();
                 stopTimer();
+                saveGameInfo(true);
             }
         } else {
             hangmanTextArea.setText(hangManLives.get(++livesPos));
@@ -150,8 +163,21 @@ public class HangmanController implements Initializable {
                 gameEnded = true;
                 disableAllButtons();
                 stopTimer();
+                saveGameInfo(false);
             }
         }
+    }
+
+    private void saveGameInfo(boolean win) {
+        String gameID = generateGameID();
+        int wrongGuesses = livesPos;
+        int time = secondsElapsed;
+
+        databaseManager.insertGameInfo(gameID, username, word, wrongGuesses, time, win);
+    }
+
+    private String generateGameID() {
+        return java.util.UUID.randomUUID().toString();
     }
 
     private void setupWord(String word) {
@@ -173,6 +199,9 @@ public class HangmanController implements Initializable {
 
     @FXML
     void reset(ActionEvent event) {
+        if(word != null){
+            saveGameInfo(false);
+        }
         word = null;
         secretWord.setLength(0);
         livesPos = 0;

@@ -60,4 +60,49 @@ public class DatabaseManager {
             e.printStackTrace();
         }
     }
+
+    public void insertGameInfo(String gameID, String username, String word, int wrongGuesses, int time, boolean win) {
+        String insertSql = "INSERT INTO public.GameInfo (GameID, Username, Word, WrongGuesses, Time, Win) VALUES (?, ?, ?, ?, ?, ?)";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(insertSql)) {
+            preparedStatement.setString(1, gameID);
+            preparedStatement.setString(2, username);
+            preparedStatement.setString(3, word);
+            preparedStatement.setInt(4, wrongGuesses);
+            preparedStatement.setInt(5, time);
+            preparedStatement.setBoolean(6, win);
+            preparedStatement.executeUpdate();
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+    public void printAllGameInfo() {
+        String selectSql = "SELECT * FROM public.GameInfo";
+        try (PreparedStatement preparedStatement = connection.prepareStatement(selectSql)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String gameID = resultSet.getString("GameID");
+                String username = resultSet.getString("Username");
+                String word = resultSet.getString("Word");
+                int wrongGuesses = resultSet.getInt("WrongGuesses");
+                int time = resultSet.getInt("Time");
+                boolean win = resultSet.getBoolean("Win");
+
+                System.out.println("GameID: " + gameID);
+                System.out.println("Username: " + username);
+                System.out.println("Word: " + word);
+                System.out.println("Wrong Guesses: " + wrongGuesses);
+                System.out.println("Time: " + time);
+                System.out.println("Win: " + win);
+                System.out.println();
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void main(String[] args) throws SQLException {
+        DatabaseManager db = new DatabaseManager();
+        db.printAllGameInfo();
+    }
+
 }
