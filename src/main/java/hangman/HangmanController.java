@@ -173,6 +173,8 @@ public class HangmanController implements Initializable {
         int wrongGuesses = livesPos;
         int time = secondsElapsed;
 
+        String username = UserSession.getInstance().getUsername();
+
         databaseManager.insertGameInfo(gameID, username, word, wrongGuesses, time, win);
     }
 

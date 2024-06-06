@@ -67,6 +67,7 @@ public class SignUpController {
         if (databaseManager.isUsernameTaken(username)) {
             showAlert("Error", "Signup failed", "Username already taken.");
         } else {
+            UserSession.getInstance().setUsername(username);
             databaseManager.signupUser(username, password, name,userId);
             loadGame(username);
             System.out.println("Signup successful");
@@ -86,8 +87,7 @@ public class SignUpController {
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Menu.fxml"));
         Parent parent = fxmlLoader.load();
-//        HangmanController controller = fxmlLoader.getController();
-//        controller.setUsername(username);
+
         stage.setTitle("Menu");
         stage.setScene(new Scene(parent,700,700));
         stage.show();

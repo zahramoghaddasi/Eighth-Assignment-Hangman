@@ -58,6 +58,7 @@ public class LogedInController {
         }
 
         if (databaseManager.isUserExist(username, password)) {
+            UserSession.getInstance().setUsername(username);
             loadGame(username);
         } else {
             showAlert("Error", "Login failed", "Username does not exist or password is incorrect.");
