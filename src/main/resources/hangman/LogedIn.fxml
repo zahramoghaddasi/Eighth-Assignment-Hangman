@@ -43,8 +43,8 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="tf_username" layoutX="139.0" layoutY="187.0" prefHeight="25.0" prefWidth="202.0" promptText="Enter username" style="-fx-background-radius: 45; -fx-background-color: #323030;" />
-            <TextField fx:id="tf_password" layoutX="139.0" layoutY="239.0" prefHeight="25.0" prefWidth="202.0" promptText="Enter name" style="-fx-background-radius: 45; -fx-background-color: #323030;" />
+            <TextField fx:id="tf_username" layoutX="139.0" layoutY="187.0" prefHeight="25.0" prefWidth="202.0" promptText="Enter username" style="-fx-background-radius: 45; -fx-background-color: #323030;-fx-text-fill: #ffffff;" />
+            <TextField fx:id="tf_password" layoutX="139.0" layoutY="239.0" prefHeight="25.0" prefWidth="202.0" promptText="Enter name" style="-fx-background-radius: 45; -fx-background-color: #323030;-fx-text-fill: #ffffff;" />
             <Button fx:id="buttonlogin" layoutX="161.0" layoutY="304.0" mnemonicParsing="false" onAction="#handleLogin" style="-fx-background-color: #323030; -fx-background-radius: 45; -fx-cursor: hand;" text="login" textFill="#b2afaf">
                <font>
                   <Font size="14.0" />
@@ -55,7 +55,7 @@
                   <Font name="System Bold" size="12.0" />
                </font>
             </Label>
-            <Button fx:id="buttonsignup" layoutX="172.0" layoutY="379.0" mnemonicParsing="false" onAction="#moveTosignup" style="-fx-background-color: TRANSPALET; -fx-cursor: hand;" text="SignUp" textFill="#356b8d">
+            <Button fx:id="buttonsignup" layoutX="172.0" layoutY="379.0" mnemonicParsing="false" onAction="#moveTosignup" style="-fx-background-color: transparent; -fx-cursor: hand;" text="SignUp" textFill="#356b8d">
                <font>
                   <Font name="System Bold" size="11.0" />
                </font>

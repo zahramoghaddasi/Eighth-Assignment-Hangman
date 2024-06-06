@@ -26,6 +26,7 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.ResourceBundle;
 
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import javafx.util.Duration;
 import org.json.JSONArray;
@@ -172,7 +173,6 @@ public class HangmanController implements Initializable {
         String gameID = generateGameID();
         int wrongGuesses = livesPos;
         int time = secondsElapsed;
-
         String username = UserSession.getInstance().getUsername();
 
         databaseManager.insertGameInfo(gameID, username, word, wrongGuesses, time, win);
@@ -288,7 +288,9 @@ public class HangmanController implements Initializable {
     private void Handleexit(ActionEvent event) throws IOException {
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Menu.fxml"));
+        Image icon = new Image("file:///C:/Users/Click/Desktop/AP/eighth/Eighth-Assignment-Hangman/src/main/resources/hangman/icons8-hangman-50.png");
         Parent parent = fxmlLoader.load();
+        stage.getIcons().add(icon);
         stage.setTitle("Menu");
         stage.setScene(new Scene(parent,700,700));
         stage.show();

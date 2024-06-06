@@ -86,7 +86,16 @@ public class DatabaseManager {
         return instance;
     }
     public List<Player> getLeaderboard() throws SQLException {
-        String selectSql = "SELECT Username, COUNT(Win) AS TotalWins FROM public.GameInfo WHERE Win = true GROUP BY Username ORDER BY TotalWins DESC";
+        String selectSql ="SELECT u.Username, COALESCE(g.TotalWins, 0) AS TotalWins " +
+                "FROM public.UserInfo u " +
+                "LEFT JOIN (" +
+                "    SELECT Username, COUNT(*) AS TotalWins " +
+                "    FROM public.GameInfo " +
+                "    WHERE Win = true " +
+                "    GROUP BY Username" +
+                ") g ON u.Username = g.Username " +
+                "ORDER BY TotalWins DESC";
+        //String selectSql = "SELECT Username, COUNT(Win) AS TotalWins FROM public.GameInfo WHERE Win = true GROUP BY Username ORDER BY TotalWins DESC";
         List<Player> leaderboard = new ArrayList<>();
 
         try (PreparedStatement preparedStatement = connection.prepareStatement(selectSql)) {
@@ -99,34 +108,53 @@ public class DatabaseManager {
         }
         return leaderboard;
     }
-    public void printAllGameInfo() {
-        String selectSql = "SELECT * FROM public.GameInfo";
+    public List<GameInfo> getUserGameInfo(String username) throws SQLException {
+        String selectSql = "SELECT * FROM public.GameInfo WHERE Username = ?";
+        List<GameInfo> gameInfoList = new ArrayList<>();
+
         try (PreparedStatement preparedStatement = connection.prepareStatement(selectSql)) {
+            preparedStatement.setString(1, username);
             ResultSet resultSet = preparedStatement.executeQuery();
             while (resultSet.next()) {
                 String gameID = resultSet.getString("GameID");
-                String username = resultSet.getString("Username");
                 String word = resultSet.getString("Word");
                 int wrongGuesses = resultSet.getInt("WrongGuesses");
                 int time = resultSet.getInt("Time");
                 boolean win = resultSet.getBoolean("Win");
 
-                System.out.println("GameID: " + gameID);
-                System.out.println("Username: " + username);
-                System.out.println("Word: " + word);
-                System.out.println("Wrong Guesses: " + wrongGuesses);
-                System.out.println("Time: " + time);
-                System.out.println("Win: " + win);
-                System.out.println();
+                gameInfoList.add(new GameInfo(gameID, username, word, wrongGuesses, time, win));
             }
-        } catch (SQLException e) {
-            e.printStackTrace();
         }
+        return gameInfoList;
     }
-
-    public static void main(String[] args) throws SQLException {
-        DatabaseManager db = new DatabaseManager();
-        db.printAllGameInfo();
-    }
+//    public void printAllGameInfo() {
+//        String selectSql = "SELECT * FROM public.GameInfo";
+//        try (PreparedStatement preparedStatement = connection.prepareStatement(selectSql)) {
+//            ResultSet resultSet = preparedStatement.executeQuery();
+//            while (resultSet.next()) {
+//                String gameID = resultSet.getString("GameID");
+//                String username = resultSet.getString("Username");
+//                String word = resultSet.getString("Word");
+//                int wrongGuesses = resultSet.getInt("WrongGuesses");
+//                int time = resultSet.getInt("Time");
+//                boolean win = resultSet.getBoolean("Win");
+//
+//                System.out.println("GameID: " + gameID);
+//                System.out.println("Username: " + username);
+//                System.out.println("Word: " + word);
+//                System.out.println("Wrong Guesses: " + wrongGuesses);
+//                System.out.println("Time: " + time);
+//                System.out.println("Win: " + win);
+//                System.out.println();
+//            }
+//        } catch (SQLException e) {
+//            e.printStackTrace();
+//        }
+//    }
+//
+//    public static void main(String[] args) throws SQLException {
+//        DatabaseManager db = new DatabaseManager();
+//        db.printAllGameInfo();
+//    }
 
 }

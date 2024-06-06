@@ -41,7 +41,9 @@ public class MenuController {
     private void Handleoption4(ActionEvent event) throws IOException {
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("LogedIn.fxml"));
+        Image icon = new Image("file:///C:/Users/Click/Desktop/AP/eighth/Eighth-Assignment-Hangman/src/main/resources/hangman/icons8-hangman-50.png");
         Parent parent = fxmlLoader.load();
+        stage.getIcons().add(icon);
         stage.setTitle("LogIn");
         stage.setScene(new Scene(parent,700,700));
         stage.show();
@@ -50,10 +52,24 @@ public class MenuController {
     private void Handleoption3(ActionEvent event) throws IOException {
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Leaderboard.fxml"));
+        Image icon = new Image("file:///C:/Users/Click/Desktop/AP/eighth/Eighth-Assignment-Hangman/src/main/resources/hangman/icons8-hangman-50.png");
         Parent parent = fxmlLoader.load();
+        stage.getIcons().add(icon);
         stage.setTitle("Leaderboard");
         stage.setScene(new Scene(parent,700,700));
         stage.show();
     }
+    @FXML
+    private void Handleoption2(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Previous.fxml"));
+        Image icon = new Image("file:///C:/Users/Click/Desktop/AP/eighth/Eighth-Assignment-Hangman/src/main/resources/hangman/icons8-hangman-50.png");
+        Parent parent = fxmlLoader.load();
+        stage.getIcons().add(icon);
+        stage.setTitle("Previous Games");
+        stage.setScene(new Scene(parent,700,700));
+        stage.show();
+    }
+
 
 }

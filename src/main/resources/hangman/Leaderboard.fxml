@@ -8,16 +8,16 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="600.0" style="-fx-background-color: #181818;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangman.LeaderboardController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="700.0" prefWidth="711.0" style="-fx-background-color: #181818;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangman.LeaderboardController">
     <children>
-        <TableView fx:id="table" layoutY="-1.0" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #181818;" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
+        <TableView fx:id="table" layoutY="-1.0" prefHeight="600.0" prefWidth="600.0" style="-fx-background-color: #181818;" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="1.0" AnchorPane.rightAnchor="-1.0" AnchorPane.topAnchor="0.0">
             <columns>
-                <TableColumn fx:id="usernameColumn" editable="false" prefWidth="300.0" resizable="false" style="-fx-background-color: #a2d7eb; -fx-alignment: CENTER; -fx-font-size: 15px;" text="Username">
+                <TableColumn fx:id="usernameColumn" editable="false" prefWidth="337.0" resizable="false" style="-fx-background-color: #a2d7eb; -fx-alignment: CENTER; -fx-font-size: 15px;" text="Username">
                     <cellValueFactory>
                         <PropertyValueFactory property="username" />
                     </cellValueFactory>
                 </TableColumn>
-                <TableColumn fx:id="totalWinsColumn" editable="false" prefWidth="300.0" resizable="false" style="-fx-background-color: #a2d7eb; -fx-alignment: CENTER; -fx-font-size: 15px;" text="Total Wins">
+                <TableColumn fx:id="totalWinsColumn" editable="false" prefWidth="372.0" resizable="false" style="-fx-background-color: #a2d7eb; -fx-alignment: CENTER; -fx-font-size: 15px;" text="Total Wins">
                     <cellValueFactory>
                         <PropertyValueFactory property="totalWins" />
                     </cellValueFactory>

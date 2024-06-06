@@ -41,7 +41,9 @@ public class LogedInController {
     void moveTosignup(ActionEvent event) throws IOException {
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SignUp.fxml"));
+        Image icon = new Image("file:///C:/Users/Click/Desktop/AP/eighth/Eighth-Assignment-Hangman/src/main/resources/hangman/icons8-hangman-50.png");
         Parent parent = fxmlLoader.load();
+        stage.getIcons().add(icon);
         stage.setTitle("SignUp");
         stage.setScene(new Scene(parent,700,700));
         stage.show();
@@ -76,8 +78,9 @@ public class LogedInController {
         System.out.println("Login successful");
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Menu.fxml"));
+        Image icon = new Image("file:///C:/Users/Click/Desktop/AP/eighth/Eighth-Assignment-Hangman/src/main/resources/hangman/icons8-hangman-50.png");
         Parent parent = fxmlLoader.load();
-
+        stage.getIcons().add(icon);
         stage.setTitle("Menu");
         stage.setScene(new Scene(parent,700,700));
         stage.show();

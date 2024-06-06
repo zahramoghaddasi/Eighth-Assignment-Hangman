@@ -37,10 +37,10 @@
                   <Font name="System Bold" size="14.0" />
                </font>
             </Label>
-            <TextField fx:id="tf_username" layoutX="139.0" layoutY="200.0" prefHeight="25.0" prefWidth="204.0" promptText="Enter username" style="-fx-background-color: #323030; -fx-background-radius: 45;" />
-            <TextField fx:id="tf_password" layoutX="140.0" layoutY="262.0" prefHeight="25.0" prefWidth="204.0" promptText="Enter password" style="-fx-background-color: #323030; -fx-background-radius: 45;" />
-            <TextField fx:id="tf_name" layoutX="140.0" layoutY="147.0" prefHeight="25.0" prefWidth="204.0" promptText="Enter name" style="-fx-background-color: #323030; -fx-background-radius: 45;" />
-            <TextField fx:id="tf_userid" layoutX="138.0" layoutY="90.0" prefHeight="25.0" prefWidth="204.0" promptText="Enter userID" style="-fx-background-color: #323030; -fx-background-radius: 45;" />
+            <TextField fx:id="tf_userid" layoutX="138.0" layoutY="90.0" prefHeight="25.0" prefWidth="204.0" promptText="Enter userID" style="-fx-background-color: #323030; -fx-background-radius: 45;-fx-text-fill: #ffffff;" />
+            <TextField fx:id="tf_username" layoutX="139.0" layoutY="200.0" prefHeight="25.0" prefWidth="204.0" promptText="Enter username" style="-fx-background-color: #323030; -fx-background-radius: 45;-fx-text-fill: #ffffff;" />
+            <TextField fx:id="tf_password" layoutX="140.0" layoutY="262.0" prefHeight="25.0" prefWidth="204.0" promptText="Enter password" style="-fx-background-color: #323030; -fx-background-radius: 45;-fx-text-fill: #ffffff;" />
+            <TextField fx:id="tf_name" layoutX="140.0" layoutY="147.0" prefHeight="25.0" prefWidth="204.0" promptText="Enter name" style="-fx-background-color: #323030; -fx-background-radius: 45;-fx-text-fill: #ffffff;" />
             <Button fx:id="buttonsignup" layoutX="159.0" layoutY="325.0" mnemonicParsing="false" onAction="#handleSignUp" prefHeight="30.0" prefWidth="53.0" style="-fx-background-color: #323030; -fx-background-radius: 45; -fx-cursor: hand;" text="signup" textFill="#b2afaf" />
             <Label layoutX="106.0" layoutY="383.0" text="Already a member?">
                <font>
