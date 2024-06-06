@@ -9,7 +9,7 @@
 <?import javafx.scene.text.Font?>
 
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="522.0" prefWidth="623.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="522.0" prefWidth="623.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangman.MenuController">
    <children>
       <AnchorPane prefHeight="459.0" prefWidth="277.0" style="-fx-background-color: #323030;">
          <children>
@@ -27,22 +27,22 @@
       </AnchorPane>
       <AnchorPane prefHeight="459.0" prefWidth="413.0" style="-fx-background-color: #a2d7eb;">
          <children>
-            <Button layoutX="104.0" layoutY="109.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="167.0" style="-fx-background-color: #323030; -fx-background-radius: 45; -fx-cursor: hand;" text="Start Game" textFill="#87969d">
+            <Button fx:id="buttonStart" layoutX="104.0" layoutY="109.0" mnemonicParsing="false" onAction="#Handleoption1" prefHeight="37.0" prefWidth="167.0" style="-fx-background-color: #323030; -fx-background-radius: 45; -fx-cursor: hand;" text="Start Game" textFill="#87969d">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <Button layoutX="104.0" layoutY="193.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="167.0" style="-fx-background-color: #323030; -fx-background-radius: 45; -fx-cursor: hand;" text="Previous Games" textFill="#87969d">
+            <Button fx:id="buttonprevious" layoutX="104.0" layoutY="193.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="167.0" style="-fx-background-color: #323030; -fx-background-radius: 45; -fx-cursor: hand;" text="Previous Games" textFill="#87969d">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <Button layoutX="104.0" layoutY="280.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="167.0" style="-fx-background-color: #323030; -fx-background-radius: 45; -fx-cursor: hand;" text="Leaderboard" textFill="#87969d">
+            <Button fx:id="buttonleaderboard" layoutX="104.0" layoutY="280.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="167.0" style="-fx-background-color: #323030; -fx-background-radius: 45; -fx-cursor: hand;" text="Leaderboard" textFill="#87969d">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <Button layoutX="107.0" layoutY="367.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="167.0" style="-fx-background-color: #323030; -fx-background-radius: 45; -fx-cursor: hand;" text="Exit" textFill="#87969d">
+            <Button fx:id="buttonexit" layoutX="107.0" layoutY="367.0" mnemonicParsing="false" onAction="#Handleoption4" prefHeight="37.0" prefWidth="167.0" style="-fx-background-color: #323030; -fx-background-radius: 45; -fx-cursor: hand;" text="LogOut" textFill="#87969d">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>

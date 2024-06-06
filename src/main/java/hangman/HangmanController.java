@@ -2,22 +2,31 @@ package hangman;
 
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import javafx.animation.KeyFrame;
+import javafx.animation.Timeline;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
 import java.io.BufferedReader;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Random;
 import java.util.ResourceBundle;
 
+import javafx.stage.Stage;
+import javafx.util.Duration;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
@@ -36,7 +45,11 @@ public class HangmanController implements Initializable {
     private Label endOfGameText;
     @FXML
     private Label textForWord;
+    @FXML
+    private Label timerLabel;
     private String word;
+    private Timeline timeline;
+    private int secondsElapsed = 0;
 
     private StringBuilder secretWord = new StringBuilder();
 
@@ -106,11 +119,8 @@ public class HangmanController implements Initializable {
         }
     }
     private void playTurn(String guess) {
-        if (word == null) {
+        if (word == null || gameEnded) {
             return;  // Word must be set before playing
-        }
-        if (gameEnded) {
-            return; // اگر بازی به پایان رسیده، خروج کن
         }
 
         ArrayList<Integer> positions = new ArrayList<>();
@@ -131,6 +141,7 @@ public class HangmanController implements Initializable {
                 endOfGameText.setText("You won!!");
                 gameEnded = true;
                 disableAllButtons();
+                stopTimer();
             }
         } else {
             hangmanTextArea.setText(hangManLives.get(++livesPos));
@@ -138,6 +149,7 @@ public class HangmanController implements Initializable {
                 endOfGameText.setText("You LOST!! The word was: " + word);
                 gameEnded = true;
                 disableAllButtons();
+                stopTimer();
             }
         }
     }
@@ -146,6 +158,7 @@ public class HangmanController implements Initializable {
         secretWord.setLength(0);
         secretWord.append("-".repeat(word.length()));
         textForWord.setText(secretWord.toString().replaceAll(".", "_ "));
+        startTimer();
     }
 
     private void disableAllButtons() {
@@ -163,11 +176,15 @@ public class HangmanController implements Initializable {
         word = null;
         secretWord.setLength(0);
         livesPos = 0;
+        gameEnded = false;
         hangmanTextArea.setText(hangManLives.get(0));
         endOfGameText.setText("");
         wordInput.setDisable(false);
         wordInput.clear();
         textForWord.setText("");
+        stopTimer();
+        secondsElapsed = 0;
+        updateTimerLabel();
         for (char letter = 'A'; letter <= 'Z'; letter++) {
             Button button = (Button) hangmanTextArea.getScene().lookup("#" + letter);
             if (button != null) {
@@ -180,22 +197,69 @@ public class HangmanController implements Initializable {
 
     @FXML
     void setWord(ActionEvent event) {
+        String[] allLetters ={"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","w","x","y","z"} ;
+        Random rnd = new Random();
+        String random = allLetters[rnd.nextInt(allLetters.length)];
         try {
-            URL url = new URL("https://api.api-ninjas.com/v1/animals?name=cheetah");
+            URL url = new URL("https://api.api-ninjas.com/v1/animals?name="+random);
             HttpURLConnection connection = (HttpURLConnection) url.openConnection();
             connection.setRequestProperty("X-Api-Key", "HwA0+AKJLZhGKrsw3JwnxQ==WHcRZYxbqRdQq8qa");
+
             ObjectMapper mapper = new ObjectMapper();
             JsonNode root = mapper.readTree(connection.getInputStream());
-            System.out.println(root);
-            System.out.println(root.path("fact").asText());
+           // System.out.println(root.path("fact").asText());
+            //System.out.println(root.get(0));
+
+            if (root.isArray() && root.size() > 0) {
+                JsonNode cheetahNode = root.get(0);
+                word = cheetahNode.path("name").asText().toUpperCase();
+                System.out.println(word);
+                setupWord(word);
+                wordInput.setDisable(true);
+            } else {
+                endOfGameText.setText("Failed to fetch word. Try again.");
+            }
         } catch (Exception e) {
             e.printStackTrace();
+            endOfGameText.setText("Failed to fetch word. Try again.");
         }
     }
 
+    private void startTimer() {
+        secondsElapsed = 0;
+        updateTimerLabel();
+        timeline.playFromStart();
+    }
+
+    private void stopTimer() {
+        timeline.stop();
+    }
+
+    private void updateTimerLabel() {
+        int minutes = secondsElapsed / 60;
+        int seconds = secondsElapsed % 60;
+        timerLabel.setText(String.format("Time: %02d:%02d", minutes, seconds));
+    }
+    private void setupTimer() {
+        timeline = new Timeline(new KeyFrame(Duration.seconds(1), event -> {
+            secondsElapsed++;
+            updateTimerLabel();
+        }));
+        timeline.setCycleCount(Timeline.INDEFINITE);
+    }
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         hangmanTextArea.setText(hangManLives.get(livesPos));
+        setupTimer();
+    }
+    @FXML
+    private void Handleexit(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Menu.fxml"));
+        Parent parent = fxmlLoader.load();
+        stage.setTitle("Menu");
+        stage.setScene(new Scene(parent));
+        stage.show();
     }
 }
