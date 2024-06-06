@@ -40,7 +40,7 @@ public class SignUpController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("LogedIn.fxml"));
         Parent parent = fxmlLoader.load();
         stage.setTitle("LogIn");
-        stage.setScene(new Scene(parent));
+        stage.setScene(new Scene(parent,700,700));
         stage.show();
 
     }
@@ -49,13 +49,23 @@ public class SignUpController {
         String username = tf_username.getText();
         String password = tf_password.getText();
         String name = tf_name.getText();
-        int userId = Integer.parseInt(tf_userid.getText());
+        String userIdText = tf_userid.getText();
+
+        if (username.isEmpty() || password.isEmpty() || name.isEmpty() || userIdText.isEmpty()) {
+            showAlert("Error", "All fields must be filled", "Please enter username, password, name, and user ID.");
+            return;
+        }
+
+        int userId;
+        try {
+            userId = Integer.parseInt(userIdText);
+        } catch (NumberFormatException e) {
+            showAlert("Error", "Invalid User ID", "User ID must be a number.");
+            return;
+        }
 
         if (databaseManager.isUsernameTaken(username)) {
-            //System.out.println("Signup failed: Username already taken");
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Signup failed: Username already taken");
-            alert.show();
+            showAlert("Error", "Signup failed", "Username already taken.");
         } else {
             databaseManager.signupUser(username, password, name,userId);
             System.out.println("Signup successful");
@@ -64,9 +74,16 @@ public class SignUpController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Menu.fxml"));
             Parent parent = fxmlLoader.load();
             stage.setTitle("Menu");
-            stage.setScene(new Scene(parent));
+            stage.setScene(new Scene(parent,700,700));
             stage.show();
         }
+    }
+    private void showAlert(String title, String headerText, String contentText) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(headerText);
+        alert.setContentText(contentText);
+        alert.showAndWait();
     }
 
 }

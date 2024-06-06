@@ -34,7 +34,7 @@ public class MenuController {
         stage.getIcons().add(icon);
         //Scene scene = new Scene(fxmlLoader.load(), 800, 600);
         stage.setTitle("Hangman Game");
-        stage.setScene(new Scene(parent));
+        stage.setScene(new Scene(parent,700,700));
         stage.show();
     }
     @FXML
@@ -43,7 +43,7 @@ public class MenuController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("LogedIn.fxml"));
         Parent parent = fxmlLoader.load();
         stage.setTitle("LogIn");
-        stage.setScene(new Scene(parent));
+        stage.setScene(new Scene(parent,700,700));
         stage.show();
     }
 

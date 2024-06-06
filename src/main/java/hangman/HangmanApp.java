@@ -14,7 +14,7 @@ public class HangmanApp extends Application {
     public void start(Stage stage) throws IOException {
         Parent root = FXMLLoader.load(getClass().getResource("LogedIn.fxml"));
         stage.setTitle("LOgin");
-        stage.setScene(new Scene(root));
+        stage.setScene(new Scene(root,700,700));
         stage.show();
     }
 

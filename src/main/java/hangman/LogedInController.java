@@ -39,7 +39,7 @@ public class LogedInController {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("SignUp.fxml"));
         Parent parent = fxmlLoader.load();
         stage.setTitle("SignUp");
-        stage.setScene(new Scene(parent));
+        stage.setScene(new Scene(parent,700,700));
         stage.show();
 
     }
@@ -48,20 +48,29 @@ public class LogedInController {
         String username = tf_username.getText();
         String password = tf_password.getText();
 
+        if (username.isEmpty() || password.isEmpty()) {
+            showAlert("Error", "All fields must be filled", "Please enter both username and password.");
+            return;
+        }
+
         if (databaseManager.isUserExist(username, password)) {
             System.out.println("Login successful");
             Stage stage = new Stage();
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Menu.fxml"));
             Parent parent = fxmlLoader.load();
             stage.setTitle("Menu");
-            stage.setScene(new Scene(parent));
+            stage.setScene(new Scene(parent,700,700));
             stage.show();
         } else {
-            //System.out.println("Login failed: Username does not exist or password is incorrect");
-            Alert alert = new Alert(Alert.AlertType.ERROR);
-            alert.setContentText("Login failed: Username does not exist or password is incorrect");
-            alert.show();
+            showAlert("Error", "Login failed", "Username does not exist or password is incorrect.");
         }
+    }
+    private void showAlert(String title, String headerText, String contentText) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle(title);
+        alert.setHeaderText(headerText);
+        alert.setContentText(contentText);
+        alert.showAndWait();
     }
 
 }

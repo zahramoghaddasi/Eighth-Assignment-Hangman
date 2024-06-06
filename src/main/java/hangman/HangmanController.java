@@ -259,7 +259,7 @@ public class HangmanController implements Initializable {
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Menu.fxml"));
         Parent parent = fxmlLoader.load();
         stage.setTitle("Menu");
-        stage.setScene(new Scene(parent));
+        stage.setScene(new Scene(parent,700,700));
         stage.show();
     }
 }
