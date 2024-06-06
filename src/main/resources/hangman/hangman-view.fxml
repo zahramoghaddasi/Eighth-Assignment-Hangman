@@ -1,16 +1,108 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="hangman.HangmanController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+
+<AnchorPane accessibleRole="BUTTON" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="620.0" prefWidth="600.0" style="-fx-background-color: #000;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="hangman.HangmanController">
+   <children>
+      <Text fill="#6daba9" layoutX="190.0" layoutY="66.0" strokeType="OUTSIDE" strokeWidth="0.0" style="-fx-bounds-type: #660000;" text="H4N9M4N">
+         <font>
+            <Font name="Broadway" size="49.0" />
+         </font>
+      </Text>
+      <TextField fx:id="wordInput" layoutX="395.0" layoutY="183.0" style="-fx-background-color: #000; -fx-background-radius: 45; -fx-border-color: #323030; -fx-border-radius: 10;" />
+      <Button fx:id="setword" layoutX="444.0" layoutY="228.0" mnemonicParsing="false" onAction="#setWord" style="-fx-border-radius: 10; -fx-background-color: #000; -fx-border-color: #323030;" text="setWord" />
+      <Label fx:id="textForWord" layoutX="392.0" layoutY="149.0" prefHeight="17.0" prefWidth="207.0" text="                       " textFill="#fffefe" />
+      <HBox layoutX="366.0" layoutY="267.0" prefHeight="25.0" prefWidth="207.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#handleLetter" prefHeight="25.0" prefWidth="26.0" style="-fx-background-color: #000; -fx-border-color: #323030; -fx-border-radius: 5;" text="A" />
+            <Button mnemonicParsing="false" onAction="#handleLetter" prefHeight="25.0" prefWidth="26.0" style="-fx-background-color: #000; -fx-border-color: #323030; -fx-border-radius: 5;" text="B" />
+            <Button mnemonicParsing="false" onAction="#handleLetter" prefHeight="25.0" prefWidth="26.0" style="-fx-background-color: #000; -fx-border-color: #323030; -fx-border-radius: 5;" text="C" />
+            <Button mnemonicParsing="false" onAction="#handleLetter" prefHeight="25.0" prefWidth="26.0" style="-fx-background-color: #000; -fx-border-color: #323030; -fx-border-radius: 5;" text="D">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleLetter" prefHeight="25.0" prefWidth="26.0" style="-fx-background-color: #000; -fx-border-color: #323030; -fx-border-radius: 5;" text="E" />
+            <Button mnemonicParsing="false" onAction="#handleLetter" prefHeight="25.0" prefWidth="26.0" style="-fx-background-color: #000; -fx-border-color: #323030; -fx-border-radius: 5;" text="F" />
+            <Button mnemonicParsing="false" onAction="#handleLetter" prefHeight="25.0" prefWidth="26.0" style="-fx-background-color: #000; -fx-border-color: #323030; -fx-border-radius: 5;" text="G">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleLetter" prefHeight="25.0" prefWidth="26.0" style="-fx-background-color: #000; -fx-border-color: #323030; -fx-border-radius: 5;" text="H">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Button>
+         </children>
+      </HBox>
+      <HBox layoutX="366.0" layoutY="292.0" prefHeight="25.0" prefWidth="207.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#handleLetter" prefHeight="25.0" prefWidth="26.0" style="-fx-background-color: #000; -fx-border-color: #323030; -fx-border-radius: 5;" text="I" />
+            <Button mnemonicParsing="false" onAction="#handleLetter" prefHeight="25.0" prefWidth="26.0" style="-fx-background-color: #000; -fx-border-color: #323030; -fx-border-radius: 5;" text="J" />
+            <Button mnemonicParsing="false" onAction="#handleLetter" prefHeight="25.0" prefWidth="26.0" style="-fx-background-color: #000; -fx-border-color: #323030; -fx-border-radius: 5;" text="K" />
+            <Button mnemonicParsing="false" onAction="#handleLetter" prefHeight="25.0" prefWidth="26.0" style="-fx-background-color: #000; -fx-border-color: #323030; -fx-border-radius: 5;" text="L" />
+            <Button mnemonicParsing="false" onAction="#handleLetter" prefHeight="25.0" prefWidth="26.0" style="-fx-background-color: #000; -fx-border-color: #323030; -fx-border-radius: 5;" text="M">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleLetter" prefHeight="25.0" prefWidth="26.0" style="-fx-background-color: #000; -fx-border-color: #323030; -fx-border-radius: 5;" text="N">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleLetter" prefHeight="25.0" prefWidth="26.0" style="-fx-background-color: #000; -fx-border-color: #323030; -fx-border-radius: 5;" text="O">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleLetter" prefHeight="25.0" prefWidth="26.0" style="-fx-background-color: #000; -fx-border-color: #323030; -fx-border-radius: 5;" text="P" />
+         </children>
+      </HBox>
+      <HBox layoutX="366.0" layoutY="317.0" prefHeight="25.0" prefWidth="207.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#handleLetter" prefHeight="25.0" prefWidth="26.0" style="-fx-background-color: #000; -fx-border-radius: 5; -fx-border-color: #323030;" text="W">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleLetter" prefHeight="25.0" prefWidth="26.0" style="-fx-background-color: #000; -fx-border-color: #323030; -fx-border-radius: 5;" text="X" />
+            <Button mnemonicParsing="false" onAction="#handleLetter" prefHeight="25.0" prefWidth="26.0" style="-fx-background-color: #000; -fx-border-color: #323030; -fx-border-radius: 5;" text="Q">
+               <font>
+                  <Font size="10.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleLetter" prefHeight="25.0" prefWidth="26.0" style="-fx-background-color: #000; -fx-border-color: #323030; -fx-border-radius: 5;" text="R" />
+            <Button mnemonicParsing="false" onAction="#handleLetter" prefHeight="25.0" prefWidth="26.0" style="-fx-background-color: #000; -fx-border-color: #323030; -fx-border-radius: 5;" text="S" />
+            <Button mnemonicParsing="false" onAction="#handleLetter" prefHeight="25.0" prefWidth="26.0" style="-fx-background-color: #000; -fx-border-color: #323030; -fx-border-radius: 5;" text="T" />
+            <Button mnemonicParsing="false" onAction="#handleLetter" prefHeight="25.0" prefWidth="26.0" style="-fx-background-color: #000; -fx-border-color: #323030; -fx-border-radius: 5;" text="U">
+               <font>
+                  <Font size="11.0" />
+               </font>
+            </Button>
+            <Button mnemonicParsing="false" onAction="#handleLetter" prefHeight="25.0" prefWidth="26.0" style="-fx-background-color: #000; -fx-border-color: #323030; -fx-border-radius: 5;" text="V" />
+         </children>
+      </HBox>
+      <HBox layoutX="366.0" layoutY="342.0" prefHeight="25.0" prefWidth="207.0">
+         <children>
+            <Button mnemonicParsing="false" onAction="#handleLetter" prefHeight="25.0" prefWidth="26.0" style="-fx-background-color: #000; -fx-border-color: #323030; -fx-border-radius: 5;" text="Y" />
+            <Button mnemonicParsing="false" onAction="#handleLetter" prefHeight="25.0" prefWidth="26.0" style="-fx-background-color: #000; -fx-border-color: #323030; -fx-border-radius: 5;" text="Z" />
+         </children>
+      </HBox>
+      <Label fx:id="endOfGameText" layoutX="377.0" layoutY="397.0" prefHeight="17.0" prefWidth="197.0" text="Guess a word!" />
+      <Button layoutX="452.0" layoutY="428.0" mnemonicParsing="false" onAction="#reset" style="-fx-background-color: #000; -fx-border-color: #323030; -fx-border-radius: 10;" text="Reset" />
+      <Label fx:id="hangmanTextArea" layoutX="47.0" layoutY="142.0" prefHeight="379.0" prefWidth="218.0" text="Label">
+         <font>
+            <Font size="42.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
