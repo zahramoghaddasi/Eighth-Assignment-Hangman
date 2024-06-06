@@ -70,7 +70,7 @@ public class SignUpController {
             UserSession.getInstance().setUsername(username);
             databaseManager.signupUser(username, password, name,userId);
             loadGame(username);
-            System.out.println("Signup successful");
+            //System.out.println("Signup successful");
 
 
         }

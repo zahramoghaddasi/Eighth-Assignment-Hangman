@@ -75,7 +75,7 @@ public class LogedInController {
     }
 
     private void loadGame(String username) throws IOException {
-        System.out.println("Login successful");
+        //System.out.println("Login successful");
         Stage stage = new Stage();
         FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Menu.fxml"));
         Image icon = new Image("file:///C:/Users/Click/Desktop/AP/eighth/Eighth-Assignment-Hangman/src/main/resources/hangman/icons8-hangman-50.png");

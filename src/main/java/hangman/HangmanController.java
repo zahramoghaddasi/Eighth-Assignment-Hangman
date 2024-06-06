@@ -244,7 +244,7 @@ public class HangmanController implements Initializable {
             if (root.isArray() && root.size() > 0) {
                 JsonNode cheetahNode = root.get(0);
                 word = cheetahNode.path("name").asText().toUpperCase();
-                System.out.println(word);
+               // System.out.println(word);
                 setupWord(word);
                 wordInput.setDisable(true);
             } else {
