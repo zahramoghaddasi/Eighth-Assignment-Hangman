@@ -1,6 +1,8 @@
 package hangman;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 // Use JDBC to connect to your database and run queries
 
@@ -9,6 +11,7 @@ public class DatabaseManager {
     private static final String USER = "postgres";
     private static final String PASSWORD = "311384";
     private static Connection connection;
+    private static DatabaseManager instance;
 
     public DatabaseManager() throws SQLException {
         connection = DriverManager.getConnection(URL,USER,PASSWORD);
@@ -74,6 +77,27 @@ public class DatabaseManager {
         } catch (SQLException e) {
             e.printStackTrace();
         }
+    }
+    public static DatabaseManager getInstance() throws SQLException {
+
+        if (instance == null) {
+            instance = new DatabaseManager();
+        }
+        return instance;
+    }
+    public List<Player> getLeaderboard() throws SQLException {
+        String selectSql = "SELECT Username, COUNT(Win) AS TotalWins FROM public.GameInfo WHERE Win = true GROUP BY Username ORDER BY TotalWins DESC";
+        List<Player> leaderboard = new ArrayList<>();
+
+        try (PreparedStatement preparedStatement = connection.prepareStatement(selectSql)) {
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String username = resultSet.getString("Username");
+                int totalWins = resultSet.getInt("TotalWins");
+                leaderboard.add(new Player(username, totalWins));
+            }
+        }
+        return leaderboard;
     }
     public void printAllGameInfo() {
         String selectSql = "SELECT * FROM public.GameInfo";

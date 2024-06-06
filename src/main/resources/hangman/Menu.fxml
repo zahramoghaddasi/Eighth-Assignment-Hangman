@@ -37,7 +37,7 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <Button fx:id="buttonleaderboard" layoutX="104.0" layoutY="280.0" mnemonicParsing="false" prefHeight="37.0" prefWidth="167.0" style="-fx-background-color: #323030; -fx-background-radius: 45; -fx-cursor: hand;" text="Leaderboard" textFill="#87969d">
+            <Button fx:id="buttonleaderboard" layoutX="104.0" layoutY="280.0" mnemonicParsing="false" onAction="#Handleoption3" prefHeight="37.0" prefWidth="167.0" style="-fx-background-color: #323030; -fx-background-radius: 45; -fx-cursor: hand;" text="Leaderboard" textFill="#87969d">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>

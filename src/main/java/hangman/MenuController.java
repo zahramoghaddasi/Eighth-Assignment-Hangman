@@ -46,5 +46,14 @@ public class MenuController {
         stage.setScene(new Scene(parent,700,700));
         stage.show();
     }
+    @FXML
+    private void Handleoption3(ActionEvent event) throws IOException {
+        Stage stage = new Stage();
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("Leaderboard.fxml"));
+        Parent parent = fxmlLoader.load();
+        stage.setTitle("Leaderboard");
+        stage.setScene(new Scene(parent,700,700));
+        stage.show();
+    }
 
 }
